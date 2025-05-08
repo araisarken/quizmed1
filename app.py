@@ -18,7 +18,7 @@ CORRECT_ANSWERS = {
 
 @app.route('/')
 def home():
-    return 'Home page reached'
+    return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
