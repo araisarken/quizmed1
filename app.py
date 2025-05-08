@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import os
 
 app = Flask(__name__)
-app.secret_key = 'araisarken'
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret")
 
 USERNAME = 'Arailym'
 PASSWORD = '2005'
@@ -24,8 +24,8 @@ def home():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
         if username == USERNAME and password == PASSWORD:
             session['username'] = username
             flash('Login successful!', 'success')
