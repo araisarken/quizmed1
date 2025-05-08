@@ -539,9 +539,9 @@ def result():
         return redirect(url_for('login'))
 
     score = 0
-    total = 3
+    total = 50
     user_answers = {}
-    for i in range(1, 4):
+    for i in range(1, 51):
         user_answer = session.get(f'q{i}')
         user_answers[f'q{i}'] = {
             'your': user_answer,
@@ -565,7 +565,7 @@ def logout():
 
 @app.route('/try-again')
 def try_again():
-    for i in range(1, 4):
+    for i in range(1, 51):
         session.pop(f'q{i}', None)
     return redirect(url_for('quiz', question=1))
 
